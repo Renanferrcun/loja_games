@@ -10,10 +10,11 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "tb_postagens")
+@Table(name = "tb_jogos")
 public class JogoModel {
 	
 	@Id
@@ -24,12 +25,12 @@ public class JogoModel {
 	@Size(min = 1, max = 60, message = "O atributo Nome deve conter no minimo 1 e no máximo 60 caracterres.")
 	private String nome;
 	
-	@NotBlank(message = "O atributo Preço é obrigatório.")
+	@NotNull(message = "O atributo Preço é obrigatório.")
 	@DecimalMin(value = "0.01", message = "O atributo Preço deve ser um valor positivo.")
 	private Double preco;
 	
 	@ManyToOne
-	@JsonIgnoreProperties("jogo")
+	@JsonIgnoreProperties("jogos") // Define que a propriedade jogos da classe CategoriaModel deve ser ignorada na serialização para evitar loop infinito
 	private CategoriaModel categoria;
 
 	public Long getId() {

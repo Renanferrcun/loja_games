@@ -26,11 +26,11 @@ public class CategoriaModel {
 	
 	@NotBlank(message = "O atributo Genêro é obrigatório.")
 	@Size(min = 1, max = 30, message = "O atributo Genêro deve conter no minimo 1 e no máximo 30 caracterres.")
-	private Long genero;
+	private String genero;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties(value = "categoria", allowSetters = true)
-	private List<JogoModel>  jogoModel;
+	private List<JogoModel>  jogos;
 
 	public Long getId() {
 		return id;
@@ -40,20 +40,20 @@ public class CategoriaModel {
 		this.id = id;
 	}
 
-	public Long getGenero() {
+	public String getGenero() {
 		return genero;
 	}
 
-	public void setGenero(Long genero) {
+	public void setGenero(String genero) {
 		this.genero = genero;
 	}
 
-	public List<JogoModel> getJogoModel() {
-		return jogoModel;
+	public List<JogoModel> getJogos() {
+		return jogos;
 	}
 
-	public void setJogoModel(List<JogoModel> jogoModel) {
-		this.jogoModel = jogoModel;
+	public void setJogos(List<JogoModel> jogos) {
+		this.jogos = jogos;
 	}
 	
 	
